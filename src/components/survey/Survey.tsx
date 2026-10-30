@@ -195,11 +195,12 @@ export function Survey() {
         <h1 className="mt-6 text-[1.75rem] font-bold leading-tight tracking-tight">
           {status === "done" ? "Thanks — you're in." : "You've already answered."}
         </h1>
-        <p className="mt-3 text-base leading-relaxed text-ink-soft">
-          {status === "done"
-            ? "Your answers are now part of the live audience profile on screen."
-            : "This device already submitted a response. Each participant counts once, so there's nothing more to do."}
-        </p>
+        {status === "already" && (
+          <p className="mt-3 text-base leading-relaxed text-ink-soft">
+            This device already submitted a response. Each participant counts
+            once, so there&apos;s nothing more to do.
+          </p>
+        )}
       </div>
     );
   }
