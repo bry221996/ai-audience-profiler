@@ -22,7 +22,10 @@ export function OpenEnded({
     return items.filter(
       (i) =>
         (!theme || i.theme === theme) &&
-        (!q || i.text.toLowerCase().includes(q) || (i.role ?? "").toLowerCase().includes(q)),
+        (!q ||
+          i.text.toLowerCase().includes(q) ||
+          (i.name ?? "").toLowerCase().includes(q) ||
+          (i.role ?? "").toLowerCase().includes(q)),
     );
   }, [items, query, theme]);
 
@@ -67,6 +70,7 @@ export function OpenEnded({
             <p className="text-[15px] leading-relaxed text-ink">{i.text}</p>
             <p className="mt-1.5 flex flex-wrap gap-x-2 text-xs text-ink-mute">
               <span className="text-ink-soft">{i.theme}</span>
+              {i.name && <span className="text-ink">{i.name}</span>}
               {i.role && <span>{i.role}</span>}
               {i.proficiency && <span>{i.proficiency}</span>}
               {i.is_demo && <span className="text-warm">demo</span>}

@@ -164,8 +164,9 @@ export function Survey() {
             Tell us where you are with AI today.
           </h1>
           <p className="mt-4 text-base leading-relaxed text-ink-soft">
-            Twelve quick questions, about three minutes. Your answers shape
-            what the session focuses on. No name or email is collected.
+            Thirteen quick questions, about three minutes. Your answers shape
+            what the session focuses on. Only your name is asked, and it stays
+            with the presenter.
           </p>
         </header>
         <div className="mt-auto pt-12">

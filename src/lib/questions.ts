@@ -19,9 +19,20 @@ export interface Question {
   allowOther?: boolean;
   required: boolean;
   maxLength?: number;
+  /** For text questions: single-line input instead of a textarea. */
+  singleLine?: boolean;
 }
 
 export const QUESTIONS: Question[] = [
+  {
+    key: "name",
+    prompt: "What's your name?",
+    help: "Shown only to the presenter, never on screen.",
+    type: "text",
+    required: true,
+    maxLength: 80,
+    singleLine: true,
+  },
   {
     key: "role",
     prompt: "What is your current role?",

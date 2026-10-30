@@ -104,6 +104,7 @@ export function Responses() {
             <thead className="border-b border-line text-xs text-ink-mute">
               <tr>
                 <th className="px-4 py-3 font-medium">Submitted</th>
+                <th className="px-4 py-3 font-medium">Name</th>
                 <th className="px-4 py-3 font-medium">Role</th>
                 <th className="px-4 py-3 font-medium">Industry</th>
                 <th className="px-4 py-3 font-medium">Proficiency</th>
@@ -114,7 +115,7 @@ export function Responses() {
             <tbody>
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-ink-mute">
+                  <td colSpan={7} className="px-4 py-10 text-center text-ink-mute">
                     {completed.length ? "No responses match these filters" : "No responses yet"}
                   </td>
                 </tr>
@@ -129,6 +130,7 @@ export function Responses() {
                     {s.completed_at ? new Date(s.completed_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—"}
                     {s.is_demo && <span className="ml-2 text-xs text-warm">demo</span>}
                   </td>
+                  <td className="px-4 py-3 font-medium text-ink">{(s.answers.name as string) ?? "—"}</td>
                   <td className="px-4 py-3">{s.answers.role as string}</td>
                   <td className="px-4 py-3">{s.answers.industry as string}</td>
                   <td className="px-4 py-3">{PROFICIENCY_SHORT[s.answers.proficiency as string] ?? "—"}</td>
@@ -160,7 +162,7 @@ function Detail({ sub, onClose }: { sub: Submission; onClose: () => void }) {
       >
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-lg font-bold tracking-tight">Submission</h2>
+            <h2 className="text-lg font-bold tracking-tight">{(sub.answers.name as string) ?? "Submission"}</h2>
             <p className="text-xs text-ink-mute">
               {sub.completed_at && new Date(sub.completed_at).toLocaleString()}
               {sub.is_demo && <span className="ml-2 text-warm">demo data</span>}

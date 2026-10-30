@@ -1,6 +1,6 @@
 # AI Audience Profiler
 
-Live audience assessment for AI seminars. Participants answer a 12-question
+Live audience assessment for AI seminars. Participants answer a 13-question
 mobile questionnaire; the presenter watches responses, charts and AI-generated
 insights update in real time, and can switch to a projector-ready presentation
 view.

@@ -182,6 +182,7 @@ export interface ThemedAnswer {
   text: string;
   theme: string;
   is_demo: boolean;
+  name?: string;
   role?: string;
   industry?: string;
   proficiency?: string;
@@ -198,6 +199,7 @@ export function themedAnswers(subs: Submission[], key: string): ThemedAnswer[] {
         text,
         theme: themeFor(text),
         is_demo: s.is_demo,
+        name: s.answers.name as string | undefined,
         role: s.answers.role as string | undefined,
         industry: s.answers.industry as string | undefined,
         proficiency: PROFICIENCY_SHORT[s.answers.proficiency as string],

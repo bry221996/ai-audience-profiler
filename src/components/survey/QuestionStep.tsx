@@ -229,6 +229,23 @@ function TextInput({
   onEnter: () => void;
 }) {
   const max = question.maxLength ?? 500;
+  if (question.singleLine) {
+    return (
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onEnter();
+        }}
+        maxLength={max}
+        autoFocus
+        autoComplete="name"
+        placeholder="Type your answer"
+        className="h-12 w-full rounded-md border border-line bg-raised px-4 text-[15px] text-ink placeholder:text-ink-mute focus:border-accent"
+      />
+    );
+  }
   return (
     <div>
       <textarea
