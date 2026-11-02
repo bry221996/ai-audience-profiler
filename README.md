@@ -55,6 +55,7 @@ SUPABASE_SERVICE_ROLE_KEY=        # server-side only; used by /api/submit
 NEXT_PUBLIC_SITE_URL=             # public URL, used for the QR code
 ANTHROPIC_API_KEY=                # optional; enables AI insights
 ANTHROPIC_MODEL=                  # optional; defaults to claude-sonnet-5-5
+MCP_SECRET=                       # optional; enables the MCP server (see below)
 ```
 
 The service-role key is only read in `src/lib/supabase/admin.ts`, which is
@@ -90,6 +91,31 @@ delete from public.survey_sessions where is_demo;
 
 In Supabase, add the Vercel domain to **Authentication → URL Configuration →
 Site URL** so sign-in redirects work.
+
+## Connect ChatGPT / Claude to the data (MCP)
+
+The app hosts a remote MCP server at
+
+```
+https://<your-domain>/api/mcp/<MCP_SECRET>
+```
+
+Set `MCP_SECRET` to a long random string (`openssl rand -hex 24`) and redeploy.
+Anyone with the URL can read all responses (including names), so treat it like a
+password and rotate it after the event.
+
+Tools exposed: `get_audience_overview`, `list_participants`, `get_participant`,
+`get_open_ended_answers`, `get_analysis_brief`, `get_questions`. All read-only.
+
+| Client | How to add |
+| --- | --- |
+| Claude.ai | Settings → Connectors → Add custom connector → paste the URL, no OAuth. |
+| Claude Desktop / Claude Code | Same URL as a remote MCP server; `Authorization: Bearer <MCP_SECRET>` also works. |
+| ChatGPT | Settings → Connectors → Create → MCP server URL, authentication "None". |
+| Cursor / others | Add as Streamable HTTP server with the URL. |
+
+Then ask things like *"Which demos should I prepare for this audience?"* or
+*"List the beginners in e-commerce and what they want AI to handle."*
 
 ## How the pieces fit
 
